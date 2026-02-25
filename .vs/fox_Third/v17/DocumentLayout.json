@@ -3,8 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\86132\\Desktop\\itemProject\\fox_Third\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C70ABBA1-057C-0409-A7F1-868F9F267532}|Assembly-CSharp.csproj|c:\\users\\86132\\desktop\\itemproject\\fox_third\\assets\\scenecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C70ABBA1-057C-0409-A7F1-868F9F267532}|Assembly-CSharp.csproj|solutionrelative:assets\\scenecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C70ABBA1-057C-0409-A7F1-868F9F267532}|Assembly-CSharp.csproj|C:\\Users\\86132\\Desktop\\itemProject\\fox_Third\\assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C70ABBA1-057C-0409-A7F1-868F9F267532}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C70ABBA1-057C-0409-A7F1-868F9F267532}|Assembly-CSharp.csproj|C:\\Users\\86132\\Desktop\\itemProject\\fox_Third\\assets\\scripts\\simpledialoguesystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C70ABBA1-057C-0409-A7F1-868F9F267532}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\simpledialoguesystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C70ABBA1-057C-0409-A7F1-868F9F267532}|Assembly-CSharp.csproj|c:\\users\\86132\\desktop\\itemproject\\fox_third\\assets\\scripts\\bagcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C70ABBA1-057C-0409-A7F1-868F9F267532}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\bagcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C70ABBA1-057C-0409-A7F1-868F9F267532}|Assembly-CSharp.csproj|C:\\Users\\86132\\Desktop\\itemProject\\fox_Third\\assets\\scripts\\npccollider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C70ABBA1-057C-0409-A7F1-868F9F267532}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\npccollider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -22,15 +34,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "SceneController.cs",
-              "DocumentMoniker": "C:\\Users\\86132\\Desktop\\itemProject\\fox_Third\\Assets\\SceneController.cs",
-              "RelativeDocumentMoniker": "Assets\\SceneController.cs",
-              "ToolTip": "C:\\Users\\86132\\Desktop\\itemProject\\fox_Third\\Assets\\SceneController.cs",
-              "RelativeToolTip": "Assets\\SceneController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAADwvxkAAAAbAAAA",
+              "DocumentIndex": 2,
+              "Title": "BagControl.cs",
+              "DocumentMoniker": "C:\\Users\\86132\\Desktop\\itemProject\\fox_Third\\Assets\\Scripts\\BagControl.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\BagControl.cs",
+              "ToolTip": "C:\\Users\\86132\\Desktop\\itemProject\\fox_Third\\Assets\\Scripts\\BagControl.cs",
+              "RelativeToolTip": "Assets\\Scripts\\BagControl.cs",
+              "ViewState": "AQIAADAAAAAAAAAAAAAuwJ0AAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-22T09:59:14.339Z",
+              "WhenOpened": "2026-02-25T14:34:37.305Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "NPCCollider.cs",
+              "DocumentMoniker": "C:\\Users\\86132\\Desktop\\itemProject\\fox_Third\\Assets\\Scripts\\NPCCollider.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\NPCCollider.cs",
+              "ToolTip": "C:\\Users\\86132\\Desktop\\itemProject\\fox_Third\\Assets\\Scripts\\NPCCollider.cs",
+              "RelativeToolTip": "Assets\\Scripts\\NPCCollider.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAAwwB0AAACOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-25T13:29:11.02Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SimpleDialogueSystem.cs",
+              "DocumentMoniker": "C:\\Users\\86132\\Desktop\\itemProject\\fox_Third\\Assets\\Scripts\\SimpleDialogueSystem.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\SimpleDialogueSystem.cs",
+              "ToolTip": "C:\\Users\\86132\\Desktop\\itemProject\\fox_Third\\Assets\\Scripts\\SimpleDialogueSystem.cs",
+              "RelativeToolTip": "Assets\\Scripts\\SimpleDialogueSystem.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQBAABXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-25T13:11:32.312Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GameManager.cs",
+              "DocumentMoniker": "C:\\Users\\86132\\Desktop\\itemProject\\fox_Third\\Assets\\Scripts\\GameManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\GameManager.cs",
+              "ToolTip": "C:\\Users\\86132\\Desktop\\itemProject\\fox_Third\\Assets\\Scripts\\GameManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\GameManager.cs",
+              "ViewState": "AQIAAG4AAAAAAAAAAAAuwGUAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-25T11:59:53.055Z",
               "EditorCaption": ""
             }
           ]
