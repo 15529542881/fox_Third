@@ -54,7 +54,7 @@ namespace MalbersAnimations
         public float height;
         public int direction;
         public float radius;
-        public PhysicMaterial material;
+        public PhysicsMaterial material;
 
         [Utilities.Flag]
         public CapsuleModifier modify;

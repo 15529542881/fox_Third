@@ -498,7 +498,7 @@ namespace MalbersAnimations.Controller
             {
                 //Debug.Log("GoinDown");
 
-                var RBOldDown = Vector3.Project(animal.RB.velocity, Gravity);
+                var RBOldDown = Vector3.Project(animal.RB.linearVelocity, Gravity);
                 var RBNewDown = Vector3.Project(animal.DesiredRBVelocity, Gravity);
                 var NewDMagn = RBNewDown.magnitude;
                 var Old_DMagn = RBOldDown.magnitude;

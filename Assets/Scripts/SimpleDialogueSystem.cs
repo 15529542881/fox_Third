@@ -10,7 +10,6 @@ public class SimpleDialogueSystem : MonoBehaviour
 {
     [Header("UI组件引用")]
     public Text dialogueText;       // 显示对话的Text组件
-    public Button nextButton;       // 下一句按钮
     public GameObject dialogPanel;  // 对话框面板
 
     // 对话类型枚举（所有可触发的对话）
@@ -34,14 +33,16 @@ public class SimpleDialogueSystem : MonoBehaviour
     void Start()
     {
         // 初始隐藏对话框
-        dialogPanel.SetActive(false);
-        // 绑定按钮点击事件
-        nextButton.onClick.AddListener(ShowNextLine);
+        //dialogPanel.SetActive(false);
+
     }
 
     private void Update()
     {
-
+        if ((Input.GetKeyDown(KeyCode.KeypadEnter)|| Input.GetKeyDown(KeyCode.Return) )&& dialogPanel.activeInHierarchy)
+        {
+            ShowNextLine();
+        }
     }
 
     /// <summary>
@@ -72,35 +73,35 @@ public class SimpleDialogueSystem : MonoBehaviour
             case DialogueType.Ember_First:
                 currentDialogueLines = new string[]
                 {
-            "Hey... Today's my birthday.",
-            "But why is there no one by the campfire?",
-            "Hmm... Everyone must have been held up by something.",
-            "I need to go into the forest to find them."
+            "Hey… it’s my birthday today.",
+            "But why is no one here by the campfire?",
+            "Hmm… they must be held up by something.",
+            "I’ll go into the forest and find them."
                 };
                 break;
             case DialogueType.Bear_Task:
                 currentDialogueLines = new string[]
                 {
             "Bear: Oh! Little Fox! Happy Birthday!",
-            "Bear: I was going to make you a super big birthday cake...",
-            "Bear: But I couldn't help tasting a few bites while preparing the ingredients, and in the end...",
-            "Bear: Sigh, I ate the last basket of berries all up.",
-            "Bear: If you can help me find 5 plump red berries,",
-            "Bear: I promise I'll hold back this time and not sneak any more bites!"
+            "Bear: I was going to bake you a huge birthday cake…",
+            "Bear: But while I was preparing the ingredients, I couldn’t help tasting a few…",
+            "Bear: And well… I ended up eating the last basket of berries.",
+            "Bear: If you could help me gather 5 nice, plump berries",
+            "Bear: I promise I won’t sneak a bite this time!"
                 };
                 break;
             case DialogueType.Bear_Doing:
                 currentDialogueLines = new string[]
                 {
-            "Bear: I think I can already smell the berry pie...",
-            "Bear: Just a little more, right?"
+            "Bear: I can almost smell the berry pie already…",
+            "Bear: Just a few more, right?"
                 };
                 break;
             case DialogueType.Bear_Complete:
                 currentDialogueLines = new string[]
                 {
-            "Bear: Fantastic! These berries look even sweeter than I remember!",
-            "Bear: Head back to the campsite to get the bonfire ready first, I'll bring the cake over soon!"
+            "Bear: Wonderful! These berries look even sweeter than I remember!",
+            "Bear: You head back to the campsite and get the fire ready,the cake will be there in no time!"
                 };
                 break;
 

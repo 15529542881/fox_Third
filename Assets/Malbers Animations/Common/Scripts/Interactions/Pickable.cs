@@ -316,8 +316,8 @@ namespace MalbersAnimations.Controller
             detectCollisions = rb.detectCollisions;
             interpolation = rb.interpolation;
             mass = rb.mass;
-            drag = rb.drag;
-            angularDrag = rb.angularDrag;
+            drag = rb.linearDamping;
+            angularDrag = rb.angularDamping;
             centerOfMass = rb.centerOfMass;
             inertiaTensor = rb.inertiaTensor;
         }
@@ -331,8 +331,8 @@ namespace MalbersAnimations.Controller
             rb.detectCollisions = detectCollisions;
             rb.interpolation = interpolation;
             rb.mass = mass;
-            rb.drag = drag;
-            rb.angularDrag = angularDrag;
+            rb.linearDamping = drag;
+            rb.angularDamping = angularDrag;
             rb.centerOfMass = centerOfMass;
             rb.inertiaTensor = inertiaTensor;
         }

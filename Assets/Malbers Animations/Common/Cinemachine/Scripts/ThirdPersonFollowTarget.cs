@@ -385,20 +385,19 @@ namespace MalbersAnimations
             if (ThisCamera == null) return;
 
 #if UNITY_6000_0_OR_NEWER
-            if (ThisCamera is CinemachineCamera cam)
+            if (ThisCamera is CinemachineVirtualCamera cam)
+            {
+                if (value)
                 {
-                    if (value)
-                    {
-                        cam.Priority.Value = priority;
-                        cam.Priority.Enabled = true;
-                    }
-                    else
-                    {
-                        cam.Priority.Value = -1;
-                        cam.Priority.Enabled = false;
-                    }
-                }            
-#else 
+                    // 2. Unity 6+中Priority直接赋值，无需.Enabled（新版已简化）
+                    cam.Priority = priority;
+                }
+                else
+                {
+                    cam.Priority = -1;
+                }
+            }
+#else
             ThisCamera.Priority = value ? priority : -1;
 #endif
         }

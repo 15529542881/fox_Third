@@ -295,8 +295,8 @@ namespace MalbersAnimations.Controller
             {
                 RB.useGravity = false;
                 RB.constraints = RigidbodyConstraints.FreezeRotation;
-                RB.drag = 0;
-                RB.angularDrag = 0;
+                RB.linearDamping = 0;
+                RB.angularDamping = 0;
                 RB.isKinematic = defaultKinematic; //Make use the Rigibody is not kinematic
             }
 
@@ -481,7 +481,7 @@ namespace MalbersAnimations.Controller
             DisableMainPlayer();
 
             MTools.ResetFloatParameters(Anim); //Reset all Anim Floats!!
-            if (RB && !RB.isKinematic) RB.velocity = Vector3.zero;
+            if (RB && !RB.isKinematic) RB.linearVelocity = Vector3.zero;
 
             if (!alwaysForward.UseConstant && alwaysForward.Variable != null) //??????
                 alwaysForward.Variable.OnValueChanged -= Always_Forward;
@@ -1404,7 +1404,7 @@ namespace MalbersAnimations.Controller
         {
             float difference = Height - hit_Hip.distance;
             AdditivePosition += Rotation * new Vector3(0, difference, 0); //Rotates with the Transform to better alignment
-            InertiaPositionSpeed = Vector3.ProjectOnPlane(RB.velocity * DeltaTime, UpVector);
+            InertiaPositionSpeed = Vector3.ProjectOnPlane(RB.linearVelocity * DeltaTime, UpVector);
             ResetUPVector(); //IMPORTANT!
         }
         #endregion
@@ -1465,7 +1465,7 @@ namespace MalbersAnimations.Controller
         {
             CurrentCycle = (CurrentCycle + 1) % 999999999;
 
-            DeltaTime = Anim.updateMode == AnimatorUpdateMode.AnimatePhysics ?
+            DeltaTime = Anim.updateMode == AnimatorUpdateMode.Fixed ?
               Time.fixedDeltaTime
                  : Time.deltaTime
                  ;
@@ -1497,7 +1497,7 @@ namespace MalbersAnimations.Controller
 
             Anim.speed = AnimatorSpeed * TimeMultiplier;
 
-            DeltaTime = Anim.updateMode == AnimatorUpdateMode.AnimatePhysics ?
+            DeltaTime = Anim.updateMode == AnimatorUpdateMode.Fixed ?
                Time.fixedDeltaTime
                   : Time.deltaTime
                   ;
@@ -1578,7 +1578,7 @@ namespace MalbersAnimations.Controller
                         Position += AdditivePosition * TimeMultiplier;
 
                     }
-                    else if (Anim.updateMode == AnimatorUpdateMode.AnimatePhysics)
+                    else if (Anim.updateMode == AnimatorUpdateMode.Fixed)
                     {
                         if (RB.isKinematic)
                         {
@@ -1587,7 +1587,7 @@ namespace MalbersAnimations.Controller
                         else
                         {
                             DesiredRBVelocity = (AdditivePosition / DeltaTime) * TimeMultiplier;
-                            RB.velocity = DesiredRBVelocity;
+                            RB.linearVelocity = DesiredRBVelocity;
 
                         }
                     }
@@ -1672,7 +1672,7 @@ namespace MalbersAnimations.Controller
 
             if (RB)
             {
-                var DeltaRB = RB.velocity * DeltaTime;
+                var DeltaRB = RB.linearVelocity * DeltaTime;
                 DeltaVelocity = DeltaRB; //When is not grounded take the Up Vector this is the one!!!
             }
             else DeltaVelocity = DeltaPos;

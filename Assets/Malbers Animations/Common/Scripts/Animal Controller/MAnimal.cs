@@ -91,7 +91,7 @@ namespace MalbersAnimations.Controller
                 Anim = gameObject.AddComponent<Animator>();
             }
 
-            Anim.updateMode = AnimatorUpdateMode.AnimatePhysics; //Set the Animator to Animate Physics
+            Anim.updateMode = AnimatorUpdateMode.Fixed; //Set the Animator to Animate Physics
 
 
 
