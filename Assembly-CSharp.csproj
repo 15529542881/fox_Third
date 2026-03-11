@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\SceneController.cs" />
     <Compile Include="Assets\PolygonNatureBiomes\PNB_Enchanted_Forest\Scripts\LightMotion.cs" />
+    <Compile Include="Assets\Scripts\CenterRaycast.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\PolygonNatureBiomes\PNB_Core\Shaders\SyntyStudios_CrystalShader.shader" />

@@ -273,9 +273,13 @@ public class SimpleDialogueSystem : MonoBehaviour
                     break;
                 case DialogueType.Rabbit_Task:
                     GameManager.Instance.ShowHint("Received a new task.");
+                    GameManager.Instance.qiQiuObjs.SetActive(true);
+                    GameManager.Instance.zhunXingObj.SetActive(true);
+                    GameManager.Instance.taskTuziObj.SetActive(true);
                     break;
                 case DialogueType.Rabbit_Complete:
                     GameManager.Instance.ShowHint("fulfil a task");
+                    GameManager.Instance.taskTuziObj.GetComponent<Toggle>().isOn = true;
                     break;
                 case DialogueType.Owl_Task:
                     GameManager.Instance.ShowHint("Received a new task.");

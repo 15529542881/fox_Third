@@ -31,6 +31,18 @@ public class NPCCollider : MonoBehaviour
                         case 3: GameManager.Instance.talkSystem.ShowDialogue(DialogueType.Bear_Complete); GetComponent<Collider>().enabled = false; break;
                     }
                 }
+                else if (name == "Rabbit")
+                {
+                    isin = false;
+                    transform.GetChild(0).gameObject.SetActive(false);
+                    int rabbitInt = GameManager.Instance.planState[1];
+                    switch (rabbitInt)
+                    {
+                        case 1: GameManager.Instance.talkSystem.ShowDialogue(DialogueType.Rabbit_Task); GameManager.Instance.planState[1] = 2; break;
+                        case 2: GameManager.Instance.talkSystem.ShowDialogue(DialogueType.Rabbit_Doing);/* GameManager.Instance.planState[0] = 3;*/ break;
+                        case 3: GameManager.Instance.talkSystem.ShowDialogue(DialogueType.Rabbit_Complete); GetComponent<Collider>().enabled = false; break;
+                    }
+                }
             }
         }
     }

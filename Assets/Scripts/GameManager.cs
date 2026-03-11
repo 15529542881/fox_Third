@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
 
     //renwu
     public int jiangGuoNum = 0;
+    public int killNum = 0;//击杀 气球 
     public Text taskXiongText;
     public Text taskTuziText;
     public Text taskMaotouyingText;
@@ -55,7 +56,9 @@ public class GameManager : MonoBehaviour
     // 新增：拾取距离阈值
     public float pickUpDistance = 1f;
 
-    public GameObject jiangGuoObjs;
+    public GameObject jiangGuoObjs;//浆果
+    public GameObject qiQiuObjs;//气球
+    public GameObject zhunXingObj;//准星
 
     // Start is called before the first frame update
     void Start()
@@ -63,7 +66,9 @@ public class GameManager : MonoBehaviour
         // 初始化时设置鼠标为默认显示状态
         SetCursorVisibility(isCursorVisible);
         talkSystem.ShowDialogue(DialogueType.Ember_First);
+        zhunXingObj.SetActive(false);
         taskXiongObj.SetActive(false);
+        qiQiuObjs.SetActive(false);
         taskTuziObj.SetActive(false);
         taskMaotouyingObj.SetActive(false);
         taskHailiObj.SetActive(false);
@@ -149,7 +154,7 @@ public class GameManager : MonoBehaviour
             if (distance < pickUpDistance)
             {
                 currentInteractableJiangGuo = jiangGuo;
-                // 可选：显示拾取提示（比如"按F拾取浆果"）
+                // 显示拾取提示（比如"按F拾取浆果"）
                 ShowHint("Press F to pick berries");
                 break; // 只取最近的一个浆果
             }
@@ -183,40 +188,20 @@ public class GameManager : MonoBehaviour
         Debug.Log("成功拾取浆果，当前数量：" + jiangGuoNum);
     }
 
-    ///// <summary>
-    ///// 核心逻辑：检测点击的物体并获取名称
-    ///// </summary>
-    //void DetectClickedObject()
-    //{
-    //    // 1. 创建从摄像机到鼠标位置的射线
-    //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-    //    // 2. 射线碰撞信息存储
-    //    RaycastHit hitInfo;
 
-    //    // 3. 发射射线检测（参数：射线、碰撞信息、检测最大距离）
-    //    if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity))
-    //    {
-    //        // 4. 获取点击到的物体
-    //        GameObject clickedObject = hitInfo.collider.gameObject;
-    //        // 5. 获取物体名称（核心：objectName是Unity物体的默认属性）
-    //        string objectName = clickedObject.name;
+    //射击气球的逻辑
+    public void KillBalloon()
+    {
+        killNum++;
+        taskTuziText.text = "Scary Balloons – Pop the Balloons (" + killNum + "/3)";
+        if (killNum >= 3)
+        {
+            planState[1] = 3;
+            qiQiuObjs.SetActive(false);
+            zhunXingObj.SetActive(false);
+        }
+    }
 
-    //        // ========== 核心逻辑：识别到名称后的处理 ==========
-    //        // 方式1：控制台打印（调试用）
-    //        Debug.Log($"点击到的物体名称：{objectName}");
-    //        if (objectName == "jiangguo")
-    //        {
-    //            clickedObject.SetActive(false);
-    //            jiangGuoNum++;
-    //            bagControl.AddJiangguo();
-    //            taskXiongText.text = "Sweet for the Bear – Collect Berries (" + jiangGuoNum  + "/5)";
-    //            if (jiangGuoNum>=5)
-    //            {
-    //                planState[0] = 3;
-    //            }
-    //        }
-    //    }
-    //}
     /// <summary>
     /// 控制鼠标显示/隐藏的方法
     /// </summary>
