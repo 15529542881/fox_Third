@@ -283,9 +283,12 @@ public class SimpleDialogueSystem : MonoBehaviour
                     break;
                 case DialogueType.Owl_Task:
                     GameManager.Instance.ShowHint("Received a new task.");
+                    GameManager.Instance.taskMaotouyingObj.SetActive(true);
+                    GameManager.Instance.yinghuochongObj1.SetActive(true);
                     break;
                 case DialogueType.Owl_Complete:
                     GameManager.Instance.ShowHint("fulfil a task");
+                    GameManager.Instance.taskMaotouyingObj.GetComponent<Toggle>().isOn = true;
                     break;
                 case DialogueType.Beaver_Task:
                     GameManager.Instance.ShowHint("Received a new task.");

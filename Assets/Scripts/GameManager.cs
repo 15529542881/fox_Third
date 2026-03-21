@@ -56,9 +56,14 @@ public class GameManager : MonoBehaviour
     // 新增：拾取距离阈值
     public float pickUpDistance = 1f;
 
+    private GameObject currentInteractableYingHuoChong = null;
+
     public GameObject jiangGuoObjs;//浆果
     public GameObject qiQiuObjs;//气球
     public GameObject zhunXingObj;//准星
+    public GameObject yinghuochongObj1;//萤火虫s  野外的
+    public GameObject yinghuochongObj2;//萤火虫s  跟随玩家的
+    public GameObject yinghuochongObj3;//萤火虫s   交给猫头鹰的
 
     // Start is called before the first frame update
     void Start()
@@ -66,6 +71,9 @@ public class GameManager : MonoBehaviour
         // 初始化时设置鼠标为默认显示状态
         SetCursorVisibility(isCursorVisible);
         talkSystem.ShowDialogue(DialogueType.Ember_First);
+        yinghuochongObj1.SetActive(false);
+        yinghuochongObj2.SetActive(false);
+        yinghuochongObj3.SetActive(false);
         zhunXingObj.SetActive(false);
         taskXiongObj.SetActive(false);
         qiQiuObjs.SetActive(false);
@@ -129,13 +137,67 @@ public class GameManager : MonoBehaviour
         }
 
         // 每帧检测玩家与所有浆果的距离
-        CheckJiangGuoDistance();
+        if (planState[0] != 3)
+        {
+            CheckJiangGuoDistance();
+        }
+        if (planState[2] != 3)
+        {
+            CheckYingHuoChongDistance();
+        }
         // 检测F键按下，拾取当前可交互的浆果
         if (Input.GetKeyDown(KeyCode.F) && currentInteractableJiangGuo != null)
         {
             PickUpJiangGuo(currentInteractableJiangGuo);
         }
+        else if (Input.GetKeyDown(KeyCode.F) && currentInteractableYingHuoChong != null)
+        {
+            InteractJiangGuo();
+        }
+        if (yinghuochongObj2.activeInHierarchy)
+        {
+            float distance = Vector3.Distance(playerTransform.position, yinghuochongObj3.transform.position);
+            Debug.Log("distance" + distance);
+            if (distance<2)
+            {
+                yinghuochongObj2.SetActive(false);
+                yinghuochongObj3.SetActive(true);
+                planState[2] = 3;
+            }
+        }
     }
+    /// <summary>
+    /// 检测玩家与萤火虫的距离
+    /// </summary>
+    void CheckYingHuoChongDistance()
+    {
+        currentInteractableYingHuoChong = null;
+        if (yinghuochongObj1 == null || !yinghuochongObj1.activeInHierarchy) return;
+
+        // 计算玩家与浆果的距离
+        float distance = Vector3.Distance(playerTransform.position, yinghuochongObj1.transform.position);
+
+        // 如果距离小于阈值，标记为可交互
+        if (distance < pickUpDistance)
+        {
+            currentInteractableYingHuoChong = yinghuochongObj1;
+
+            ShowHint("Press F to interact with fireflies");
+        }
+
+        // 如果没有可交互的浆果，隐藏提示（可选）
+        if (currentInteractableYingHuoChong == null && hintObj.activeInHierarchy)
+        {
+            hintObj.SetActive(false);
+        }
+    }
+    //带走萤火虫
+    void InteractJiangGuo()
+    {
+        yinghuochongObj1.SetActive(false);
+        yinghuochongObj2.SetActive(true);
+    }
+
     /// <summary>
     /// 检测玩家与所有浆果的距离，更新可交互浆果
     /// </summary>
