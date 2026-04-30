@@ -61,8 +61,11 @@
     <Analyzer Include="C:\Program Files\Unity 6000.0.31f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\WaterRespawnTrigger.cs" />
+    <Compile Include="Assets\Scripts\DeliverChuiZiTrigger.cs" />
     <Compile Include="Assets\Scripts\NPCCollider.cs" />
     <Compile Include="Assets\Scripts\SimpleDialogueSystem.cs" />
+    <Compile Include="Assets\Scripts\PickupChuiZiTrigger.cs" />
     <Compile Include="Assets\Scripts\BagControl.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\SceneController.cs" />

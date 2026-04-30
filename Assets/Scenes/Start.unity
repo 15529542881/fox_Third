@@ -178,7 +178,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 66
+    m_FontSize: 63
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 6
@@ -189,11 +189,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.09
-  m_Text: 'Operation method: Use the keys ''w'', ''a'', ''s'' to control movement,
-    ''shift'' to accelerate the movement, and ''space'' to jump. Press "Tab" to open
-    the task panel, press "ESC" to open the settings panel, press "B" to open the
-    menu, interact with NPCs by pressing "E", and interact with items by pressing
-    "F".'
+  m_Text: 'Operation method: Use the keys W, A, S, D to control movement, Shift to
+    accelerate movement, and Space to jump. Press Tab to open the task panel, press
+    ESC to open the settings panel, press B to open the menu, press M to open the
+    minimap, interact with NPCs by pressing E, and interact with items by pressing
+    F.'
 --- !u!222 &26729766
 CanvasRenderer:
   m_ObjectHideFlags: 0

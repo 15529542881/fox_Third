@@ -3,16 +3,12 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>
-/// 简易对话系统 - 所有对话内容整合在一个脚本中
-/// </summary>
 public class SimpleDialogueSystem : MonoBehaviour
 {
-    [Header("UI组件引用")]
-    public Text dialogueText;       // 显示对话的Text组件
-    public GameObject dialogPanel;  // 对话框面板
+    [Header("UI")]
+    public Text dialogueText;       
+    public GameObject dialogPanel;  
 
-    // 对话类型枚举（所有可触发的对话）
     public enum DialogueType
     {
         NULL,
@@ -25,14 +21,13 @@ public class SimpleDialogueSystem : MonoBehaviour
         Campfire_End
     }
 
-    private string[] currentDialogueLines; // 当前要显示的对话内容
-    private int currentLineIndex = 0;      // 当前显示的行索引
+    private string[] currentDialogueLines; 
+    private int currentLineIndex = 0;      
 
 
     public DialogueType currentDialogueType = DialogueType.NULL;
     void Start()
     {
-        // 初始隐藏对话框
         //dialogPanel.SetActive(false);
 
     }
@@ -45,31 +40,20 @@ public class SimpleDialogueSystem : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 外部调用：显示指定类型的对话
-    /// </summary>
-    /// <param name="type">要显示的对话类型</param>
     public void ShowDialogue(DialogueType type)
     {
         GameManager.Instance.SetCursorVisibility(true);
-        // 重置索引
         currentLineIndex = 0;
-        // 根据类型加载对应的对话内容
         LoadDialogueContent(type);
-        // 显示对话框和第一句对话
         dialogPanel.SetActive(true);
         ShowCurrentLine();
     }
 
-    /// <summary>
-    /// 加载指定类型的对话内容
-    /// </summary>
     private void LoadDialogueContent(DialogueType type)
     {
         currentDialogueType = type;
         switch (type)
         {
-            // 贪吃的熊
             case DialogueType.Ember_First:
                 currentDialogueLines = new string[]
                 {
@@ -105,7 +89,6 @@ public class SimpleDialogueSystem : MonoBehaviour
                 };
                 break;
 
-            // 胆小的兔子
             case DialogueType.Rabbit_Task:
                 currentDialogueLines = new string[]
                 {
@@ -134,7 +117,6 @@ public class SimpleDialogueSystem : MonoBehaviour
                 };
                 break;
 
-            // 迷路的猫头鹰
             case DialogueType.Owl_Task:
                 currentDialogueLines = new string[]
                 {
@@ -163,7 +145,6 @@ public class SimpleDialogueSystem : MonoBehaviour
                 };
                 break;
 
-            // 忙碌的海狸
             case DialogueType.Beaver_Task:
                 currentDialogueLines = new string[]
                 {
@@ -190,7 +171,6 @@ public class SimpleDialogueSystem : MonoBehaviour
                 };
                 break;
 
-            // 浣熊商人
             case DialogueType.Raccoon_Task:
                 currentDialogueLines = new string[]
                 {
@@ -217,7 +197,6 @@ public class SimpleDialogueSystem : MonoBehaviour
                 };
                 break;
 
-            // 篝火结尾
             case DialogueType.Campfire_End:
                 currentDialogueLines = new string[]
                 {
@@ -228,9 +207,6 @@ public class SimpleDialogueSystem : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 显示当前行的对话
-    /// </summary>
     private void ShowCurrentLine()
     {
         if (currentDialogueLines != null && currentLineIndex < currentDialogueLines.Length)
@@ -239,14 +215,10 @@ public class SimpleDialogueSystem : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 点击按钮显示下一句
-    /// </summary>
     private void ShowNextLine()
     {
         currentLineIndex++;
 
-        // 如果还有对话就显示，没有就关闭对话框
         if (currentLineIndex < currentDialogueLines.Length)
         {
             ShowCurrentLine();
@@ -255,7 +227,7 @@ public class SimpleDialogueSystem : MonoBehaviour
         {
             GameManager.Instance.SetCursorVisibility(false);
             dialogPanel.SetActive(false);
-            currentLineIndex = 0; // 重置索引，方便下次使用
+            currentLineIndex = 0; 
             switch (currentDialogueType)
             {
                 case DialogueType.Ember_First:
@@ -292,15 +264,21 @@ public class SimpleDialogueSystem : MonoBehaviour
                     break;
                 case DialogueType.Beaver_Task:
                     GameManager.Instance.ShowHint("Received a new task.");
+                    GameManager.Instance.taskHailiObj.SetActive(true);
+                    GameManager.Instance.chuizi.SetActive(true);
                     break;
                 case DialogueType.Beaver_Complete:
                     GameManager.Instance.ShowHint("fulfil a task");
+                    GameManager.Instance.taskHailiObj.GetComponent<Toggle>().isOn = true;
                     break;
                 case DialogueType.Raccoon_Task:
                     GameManager.Instance.ShowHint("Received a new task.");
+                    GameManager.Instance.baoshis.SetActive(true);
+                    GameManager.Instance.taskHuanXiongObj.SetActive(true);
                     break;
                 case DialogueType.Raccoon_Complete:
                     GameManager.Instance.ShowHint("fulfil a task");
+                    GameManager.Instance.taskHuanXiongObj.GetComponent<Toggle>().isOn = true;
                     break;
                 case DialogueType.Campfire_End:
                     break;
@@ -310,7 +288,6 @@ public class SimpleDialogueSystem : MonoBehaviour
         }
     }
 
-    // 快捷调用示例（可以直接在Inspector绑定按钮点击）
     public void ShowBearFirstDialogue() => ShowDialogue(DialogueType.Bear_Complete);
     public void ShowCampfireEndDialogue() => ShowDialogue(DialogueType.Campfire_End);
 }

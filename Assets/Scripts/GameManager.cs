@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
     }
-    // 记录当前鼠标的显示状态（true显示，false隐藏）
+    
     private bool isCursorVisible = false;
 
     public MalbersInput malbersInput;
@@ -25,11 +25,11 @@ public class GameManager : MonoBehaviour
     public GameObject hintObj;
     public Text hintText;
 
-    public List<int> planState = new List<int>() { 1, 1, 1, 1, 1 };//1 2 3  xiong tuzi maotouying haili huanxiong
+    public List<int> planState = new List<int>() { 1, 1, 1, 1, 1 };
 
     //renwu
     public int jiangGuoNum = 0;
-    public int killNum = 0;//击杀 气球 
+    public int killNum = 0;// 
     public Text taskXiongText;
     public Text taskTuziText;
     public Text taskMaotouyingText;
@@ -42,35 +42,78 @@ public class GameManager : MonoBehaviour
     public GameObject taskHailiObj;
     public GameObject taskHuanXiongObj;
 
+
+    public GameObject miniMap;//
     //UI
     public GameObject setPanel;
     public GameObject bagPanel;
     public GameObject taskPanel;
 
-    // 新增：存储场景中所有的浆果对象
+    
     private List<GameObject> allJiangGuoObjects = new List<GameObject>();
-    // 新增：记录当前可交互的浆果对象（距离<1的那个）
+    
     private GameObject currentInteractableJiangGuo = null;
-    // 新增：玩家Transform（需要在Inspector面板赋值）
+    
     public Transform playerTransform;
-    // 新增：拾取距离阈值
+    
     public float pickUpDistance = 1f;
+
+      
+    public GameObject chuiZiPickupTrigger; 
+    public GameObject chuiZiDeliverTrigger; 
+    public Transform respawnPoint; 
+    private bool hasChuiZiInBag = false; 
+    public float chuiZiPickDistance = 1f; 
+    
+    private bool showHammerPickHint = false;
+    private bool showHammerGiveHint = false; 
+    private bool isHintShowing = false;   
+    private float hintDuration = 3f;      
+
+
+    public GameObject stoneObjs;       
+    private List<GameObject> allStones = new List<GameObject>();
+    private GameObject currentInteractableStone = null;
+    public int stoneCount = 0;         
+    public int stoneNeed = 5;          
+    public Transform raccoonTransform; 
+
+
+
 
     private GameObject currentInteractableYingHuoChong = null;
 
-    public GameObject jiangGuoObjs;//浆果
-    public GameObject qiQiuObjs;//气球
-    public GameObject zhunXingObj;//准星
-    public GameObject yinghuochongObj1;//萤火虫s  野外的
-    public GameObject yinghuochongObj2;//萤火虫s  跟随玩家的
-    public GameObject yinghuochongObj3;//萤火虫s   交给猫头鹰的
+    public GameObject jiangGuoObjs;
+    public GameObject qiQiuObjs;
+    public GameObject zhunXingObj;
+    public GameObject yinghuochongObj1;
+    public GameObject yinghuochongObj2;
+    public GameObject yinghuochongObj3;
 
+    public GameObject baoshis;
+
+    public GameObject chuizi;
+
+    public Transform gameEndPlayerPos; 
+    public GameObject campFireEndObj;  
+    private bool isGameEnd = false;    
+
+    bool CheckAllTaskFinish()
+    {
+        return planState[0] == 3
+            && planState[1] == 3
+            && planState[2] == 3
+            && planState[3] == 3
+            && planState[4] == 3;
+    }
     // Start is called before the first frame update
     void Start()
     {
-        // 初始化时设置鼠标为默认显示状态
         SetCursorVisibility(isCursorVisible);
         talkSystem.ShowDialogue(DialogueType.Ember_First);
+        baoshis.SetActive(false);
+        miniMap.SetActive(false);
+        chuizi.SetActive(false);
         yinghuochongObj1.SetActive(false);
         yinghuochongObj2.SetActive(false);
         yinghuochongObj3.SetActive(false);
@@ -89,27 +132,32 @@ public class GameManager : MonoBehaviour
         {
             allJiangGuoObjects.Add(jiangGuoObjs.transform.GetChild(i).gameObject);
         }
+        for (int i = 0; i < stoneObjs.transform.childCount; i++)
+        {
+            allStones.Add(stoneObjs.transform.GetChild(i).gameObject);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        // 检测Q键按下（按下一次切换，而非持续按住）
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            // 切换鼠标状态（取反）
             isCursorVisible = !isCursorVisible;
-            // 调用方法更新鼠标显隐
             SetCursorVisibility(isCursorVisible);
         }
-        // 检测鼠标左键点击（按下瞬间）
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    DetectClickedObject();
-        //}
+  
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            miniMap.SetActive(true);
+        }
+        if (Input.GetKeyUp(KeyCode.M))
+        {
+            miniMap.SetActive(false);
+        }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            // 调用方法更新鼠标显隐
             if (!taskPanel.activeInHierarchy && !bagPanel.activeInHierarchy)
             {
                 SetCursorVisibility(!setPanel.activeInHierarchy);
@@ -121,7 +169,6 @@ public class GameManager : MonoBehaviour
         {
             if (!setPanel.activeInHierarchy && !bagPanel.activeInHierarchy)
             {
-                // 调用方法更新鼠标显隐
                 SetCursorVisibility(!taskPanel.activeInHierarchy);
                 taskPanel.SetActive(!taskPanel.activeInHierarchy);
             }
@@ -130,13 +177,11 @@ public class GameManager : MonoBehaviour
         {
             if (!taskPanel.activeInHierarchy && !setPanel.activeInHierarchy)
             {
-                // 调用方法更新鼠标显隐
                 SetCursorVisibility(!bagPanel.activeInHierarchy);
                 bagPanel.SetActive(!bagPanel.activeInHierarchy);
             }
         }
 
-        // 每帧检测玩家与所有浆果的距离
         if (planState[0] != 3)
         {
             CheckJiangGuoDistance();
@@ -145,7 +190,6 @@ public class GameManager : MonoBehaviour
         {
             CheckYingHuoChongDistance();
         }
-        // 检测F键按下，拾取当前可交互的浆果
         if (Input.GetKeyDown(KeyCode.F) && currentInteractableJiangGuo != null)
         {
             PickUpJiangGuo(currentInteractableJiangGuo);
@@ -165,19 +209,64 @@ public class GameManager : MonoBehaviour
                 planState[2] = 3;
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (chuizi.activeInHierarchy && !hasChuiZiInBag)
+            {
+                float dis = Vector3.Distance(playerTransform.position, chuizi.transform.position);
+                if (dis <= chuiZiPickDistance)
+                {
+                    PickupChuiZi();
+                }
+            }
+            else if (hasChuiZiInBag && chuiZiDeliverTrigger != null)
+            {
+                float disDeliver = Vector3.Distance(playerTransform.position, chuiZiDeliverTrigger.transform.position);
+                if (disDeliver <= chuiZiPickDistance)
+                {
+                    DeliverChuiZi();
+                }
+            }
+        }
+
+        if (planState[4] != 3)
+        {
+            CheckStoneDistance();
+        }
+
+        if (Input.GetKeyDown(KeyCode.F) && currentInteractableStone != null)
+        {
+            PickUpStone(currentInteractableStone);
+        }
+
+        if (Input.GetKeyDown(KeyCode.F) && raccoonTransform != null)
+        {
+            float dis = Vector3.Distance(playerTransform.position, raccoonTransform.position);
+            Debug.Log(dis + " + " + stoneCount + " + " + planState[4]);
+            if (dis <= 2f && stoneCount >= stoneNeed && planState[4] == 2)
+            {
+                ExchangeFirework();
+            }
+        }
+
+        if (!isGameEnd && CheckAllTaskFinish())
+        {
+            isGameEnd = true;
+            playerTransform.position = gameEndPlayerPos.position;
+            campFireEndObj.SetActive(true);
+            talkSystem.ShowDialogue(DialogueType.Campfire_End);
+        }
     }
-    /// <summary>
-    /// 检测玩家与萤火虫的距离
-    /// </summary>
+
+
     void CheckYingHuoChongDistance()
     {
         currentInteractableYingHuoChong = null;
         if (yinghuochongObj1 == null || !yinghuochongObj1.activeInHierarchy) return;
 
-        // 计算玩家与浆果的距离
         float distance = Vector3.Distance(playerTransform.position, yinghuochongObj1.transform.position);
 
-        // 如果距离小于阈值，标记为可交互
         if (distance < pickUpDistance)
         {
             currentInteractableYingHuoChong = yinghuochongObj1;
@@ -185,54 +274,42 @@ public class GameManager : MonoBehaviour
             ShowHint("Press F to interact with fireflies");
         }
 
-        // 如果没有可交互的浆果，隐藏提示（可选）
         if (currentInteractableYingHuoChong == null && hintObj.activeInHierarchy)
         {
             hintObj.SetActive(false);
         }
     }
-    //带走萤火虫
+
     void InteractJiangGuo()
     {
         yinghuochongObj1.SetActive(false);
         yinghuochongObj2.SetActive(true);
     }
 
-    /// <summary>
-    /// 检测玩家与所有浆果的距离，更新可交互浆果
-    /// </summary>
     void CheckJiangGuoDistance()
     {
-        currentInteractableJiangGuo = null; // 重置当前可交互对象
+        currentInteractableJiangGuo = null; 
 
         foreach (GameObject jiangGuo in allJiangGuoObjects)
         {
-            if (jiangGuo == null || !jiangGuo.activeInHierarchy) continue; // 跳过已被拾取的浆果
+            if (jiangGuo == null || !jiangGuo.activeInHierarchy) continue; 
 
-            // 计算玩家与浆果的距离
             float distance = Vector3.Distance(playerTransform.position, jiangGuo.transform.position);
 
-            // 如果距离小于阈值，标记为可交互
             if (distance < pickUpDistance)
             {
                 currentInteractableJiangGuo = jiangGuo;
-                // 显示拾取提示（比如"按F拾取浆果"）
                 ShowHint("Press F to pick berries");
-                break; // 只取最近的一个浆果
+                break; 
             }
         }
 
-        // 如果没有可交互的浆果，隐藏提示（可选）
         if (currentInteractableJiangGuo == null && hintObj.activeInHierarchy)
         {
             hintObj.SetActive(false);
         }
     }
 
-    /// <summary>
-    /// 拾取浆果的核心逻辑
-    /// </summary>
-    /// <param name="jiangGuoObj">要拾取的浆果对象</param>
     void PickUpJiangGuo(GameObject jiangGuoObj)
     {
         jiangGuoObj.SetActive(false);
@@ -242,16 +319,14 @@ public class GameManager : MonoBehaviour
 
         if (jiangGuoNum >= 5)
         {
+            currentInteractableJiangGuo = null;
             planState[0] = 3;
         }
 
-        // 移除已拾取的浆果（可选，防止重复检测）
         allJiangGuoObjects.Remove(jiangGuoObj);
-        Debug.Log("成功拾取浆果，当前数量：" + jiangGuoNum);
     }
 
 
-    //射击气球的逻辑
     public void KillBalloon()
     {
         killNum++;
@@ -264,29 +339,99 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 控制鼠标显示/隐藏的方法
-    /// </summary>
-    /// <param name="isVisible">true显示鼠标，false隐藏鼠标</param>
+    public void PickupChuiZi()
+    {
+        if (hasChuiZiInBag) return;
+
+        hasChuiZiInBag = true;
+        chuizi.SetActive(false); 
+        bagControl.AddChuizi(); 
+        ShowHint("Got the Hammer!");
+    }
+
+    public void DeliverChuiZi()
+    {
+        if (!hasChuiZiInBag) return;
+
+        hasChuiZiInBag = false;
+        bagControl.ClearChuizi(); 
+        ShowHint("Gave the Hammer to the Beaver!");
+        planState[3] = 3; 
+    }
+
+    public void RespawnPlayer()
+    {
+        if (playerTransform != null && respawnPoint != null)
+        {
+            playerTransform.position = respawnPoint.position;
+            ShowHint("Fell into water! Return to start.");
+        }
+    }
+
     public void SetCursorVisibility(bool isVisible)
     {
         malbersInput.enabled = !isVisible;
         freeLookCamera.enabled = !isVisible;
-        // 设置鼠标是否可见
         Cursor.visible = isVisible;
 
-        // 设置鼠标锁定模式：
-        // 可见时解锁（自由移动），隐藏时锁定到屏幕中心
         Cursor.lockState = isVisible ? CursorLockMode.None : CursorLockMode.Locked;
 
-        // 可选：打印日志，方便调试
-        Debug.Log($"鼠标状态已切换：{(isVisible ? "显示" : "隐藏")}");
     }
 
-    /// <summary>
-    /// 提示
-    /// </summary>
-    /// <param name="hint"></param>
+
+    void CheckStoneDistance()
+    {
+        currentInteractableStone = null;
+
+        foreach (GameObject stone in allStones)
+        {
+            if (stone == null || !stone.activeInHierarchy) continue;
+
+            float distance = Vector3.Distance(playerTransform.position, stone.transform.position);
+
+            if (distance < pickUpDistance)
+            {
+                currentInteractableStone = stone;
+                ShowHint("Press F to collect Shiny Stone");
+                break;
+            }
+        }
+
+        if (currentInteractableStone == null && hintObj.activeInHierarchy)
+        {
+            hintObj.SetActive(false);
+        }
+    }
+
+    void PickUpStone(GameObject stoneObj)
+    {
+        stoneObj.SetActive(false);
+        stoneCount++;
+        bagControl.AddStone();        
+        taskHuanXiongText.text = "A Fair Trade – Collect Stones (" + stoneCount + "/5)";
+
+        allStones.Remove(stoneObj);
+        ShowHint("Collected Shiny Stone!");
+
+        if (stoneCount >= 5)
+        {
+            ShowHint("You collected all stones! Find Raccoon!");
+        }
+    }
+
+    void ExchangeFirework()
+    {
+        stoneCount = 0;
+        bagControl.ClearStone();
+        planState[4] = 3; 
+
+        bagControl.AddYanHua(); 
+        taskHuanXiongText.text = "A Fair Trade – Completed!";
+        ShowHint("Traded stones for Fireworks! Thank you!");
+    }
+
+
+
     public void ShowHint(string hint)
     {
         StartCoroutine(ShowHintIE(hint));

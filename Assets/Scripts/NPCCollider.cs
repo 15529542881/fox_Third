@@ -50,9 +50,33 @@ public class NPCCollider : MonoBehaviour
                     int maotouyingInt = GameManager.Instance.planState[2];
                     switch (maotouyingInt)
                     {
-                        case 1: GameManager.Instance.talkSystem.ShowDialogue(DialogueType.Owl_Task); GameManager.Instance.planState[1] = 2; break;
+                        case 1: GameManager.Instance.talkSystem.ShowDialogue(DialogueType.Owl_Task); GameManager.Instance.planState[2] = 2; break;
                         case 2: GameManager.Instance.talkSystem.ShowDialogue(DialogueType.Owl_Doing);/* GameManager.Instance.planState[0] = 3;*/ break;
                         case 3: GameManager.Instance.talkSystem.ShowDialogue(DialogueType.Owl_Complete); GetComponent<Collider>().enabled = false; break;
+                    }
+                }
+                else if (name == "haili")
+                {
+                    isin = false;
+                    transform.GetChild(0).gameObject.SetActive(false);
+                    int hailiInt = GameManager.Instance.planState[3];
+                    switch (hailiInt)
+                    {
+                        case 1: GameManager.Instance.talkSystem.ShowDialogue(DialogueType.Beaver_Task); GameManager.Instance.planState[3] = 2; break;
+                        case 2: GameManager.Instance.talkSystem.ShowDialogue(DialogueType.Beaver_Doing);/* GameManager.Instance.planState[0] = 3;*/ break;
+                        case 3: GameManager.Instance.talkSystem.ShowDialogue(DialogueType.Beaver_Complete); GetComponent<Collider>().enabled = false; break;
+                    }
+                }
+                else if (name == "huanxiong")
+                {
+                    isin = false;
+                    transform.GetChild(0).gameObject.SetActive(false);
+                    int hailiInt = GameManager.Instance.planState[4];
+                    switch (hailiInt)
+                    {
+                        case 1: GameManager.Instance.talkSystem.ShowDialogue(DialogueType.Raccoon_Task); GameManager.Instance.planState[4] = 2; break;
+                        case 2: GameManager.Instance.talkSystem.ShowDialogue(DialogueType.Raccoon_Doing);/* GameManager.Instance.planState[0] = 3;*/ break;
+                        case 3: GameManager.Instance.talkSystem.ShowDialogue(DialogueType.Raccoon_Complete); GetComponent<Collider>().enabled = false; break;
                     }
                 }
             }
