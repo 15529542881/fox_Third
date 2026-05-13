@@ -1,0 +1,25 @@
+# Unity 自动生成目录（不上传）
+Library/
+Temp/
+Obj/
+Build/
+Builds/
+Logs/
+UserSettings/
+MemorySnapshot/
+
+# Mac 系统垃圾文件（不上传）
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# 编辑器配置
+.vscode/
+.idea/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.user
+*.userprefs
