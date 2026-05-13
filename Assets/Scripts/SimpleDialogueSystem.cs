@@ -58,27 +58,27 @@ public class SimpleDialogueSystem : MonoBehaviour
             case DialogueType.Ember_First:
                 currentDialogueLines = new string[]
                 {
-            "Hey¡­ it¡¯s my birthday today.",
-            "But why is no one here by the campfire?",
-            "Hmm¡­ they must be held up by something.",
-            "I¡¯ll go into the forest and find them."
+            "Heyâ€¦ itâ€™s my birthday today.",
+            "Butâ€¦ why is no one here?",
+            "Hmmâ€¦ something must be keeping everyone busy.",
+            "I should go into the forest and find them."
                 };
                 break;
             case DialogueType.Bear_Task:
                 currentDialogueLines = new string[]
                 {
-            "Bear: Oh! Little Fox! Happy Birthday!",
-            "Bear: I was going to bake you a huge birthday cake¡­",
-            "Bear: But while I was preparing the ingredients, I couldn¡¯t help tasting a few¡­",
-            "Bear: And well¡­ I ended up eating the last basket of berries.",
-            "Bear: If you could help me gather 5 nice, plump berries",
-            "Bear: I promise I won¡¯t sneak a bite this time!"
+            "Bear: Oh! Ember! Happy birthday!",
+            "Bear: I was going to bake you a huge birthday cakeâ€¦",
+            "Bear: But while I was preparing the ingredients, Iâ€¦ had a few bites.",
+            "Bear: And, wellâ€¦ I ate the last basket of berries.",
+            "Bear: If you could bring me 5 round, juicy red berriesâ€¦",
+            "Bear: I promise I wonâ€™t eat them this time!"
                 };
                 break;
             case DialogueType.Bear_Doing:
                 currentDialogueLines = new string[]
                 {
-            "Bear: I can almost smell the berry pie already¡­",
+            "Bear: Mmmâ€¦ I can almost smell berry pie alreadyâ€¦",
             "Bear: Just a few more, right?"
                 };
                 break;
@@ -93,12 +93,12 @@ public class SimpleDialogueSystem : MonoBehaviour
             case DialogueType.Rabbit_Task:
                 currentDialogueLines = new string[]
                 {
-            "Rabbit: Ember! Shhh¡ªkeep your voice down!",
-            "Rabbit: Did you see those things hanging from the tree?",
-            "Rabbit: They're staring at the path with their big eyes...",
-            "Rabbit: I dare not go over there at all.",
-            "Rabbit: You have that wooden slingshot with you, right?",
-            "Rabbit: If you get rid of those 3 balloons, I can safely go to your birthday party."
+            "Rabbit: Ember! Shhhâ€”keep your voice down!",
+            "Rabbit: Do you see those things hanging in the trees?",
+            "Rabbit: Theyâ€™ve got these big eyesâ€¦ staring at the pathâ€¦",
+            "Rabbit: Iâ€™m too scared to go past them!",
+            "Rabbit: Youâ€™ve got that wooden slingshot, right?",
+            "Rabbit: If you get rid of those 3 balloons,I can safely make it to your party."
                 };
                 break;
             case DialogueType.Rabbit_Doing:
@@ -112,29 +112,29 @@ public class SimpleDialogueSystem : MonoBehaviour
                 currentDialogueLines = new string[]
                 {
             "Rabbit: Pop! Pop!",
-            "Rabbit: They were just balloons that pop...",
-            "Rabbit: You're so brave, little fox!",
-            "Rabbit: I'll come to the campsite to find you right away!"
+            "Rabbit: Ohâ€¦ they were just balloonsâ€¦",
+            "Rabbit: You're so brave!",
+            "Rabbit: Iâ€™ll head to the camp right now!"
                 };
                 break;
 
             case DialogueType.Owl_Task:
                 currentDialogueLines = new string[]
                 {
-            "Owl: Oh... Little Fox, happy birthday.",
-            "Owl: This old man was going to get to the campsite early.",
-            "Owl: But once it gets dark, these old eyes of mine can't see a thing.",
-            "Owl: The light in my lantern has long since gone out.",
-            "Owl: Did you see those little glowing guys in the grass over there? Those are fireflies.",
-            "Owl: They love warm little foxes, and they'll follow you as long as you get close.",
-            "Owl: Help me lead them to my side, and I'll be able to see the way back to the campsite."
+            "Owl: Ahâ€¦ little fox. Happy birthday.",
+            "Owl: I meant to head to the camp earlierâ€¦",
+            "Owl: But once it gets dark, these old eyes canâ€™t see a thing.",
+            "Owl: And my lantern has long gone out.",
+            "Owl: Do you see those little lights glowing in the grass?",
+            "Owl: Theyâ€™re fireflies. Theyâ€™re drawn to warm-hearted foxes like you.",
+            "Owl: If you lead them over to me, Iâ€™ll be able to find my way back to camp."
                 };
                 break;
             case DialogueType.Owl_Doing:
                 currentDialogueLines = new string[]
                 {
             "Owl: Take your time, little fox...",
-            "Owl: Old friends don't like being rushed."
+            "Owl: Iâ€™m in no hurry."
                 };
                 break;
             case DialogueType.Owl_Complete:
@@ -142,18 +142,18 @@ public class SimpleDialogueSystem : MonoBehaviour
                 {
             "Owl: Ah... What a warm light.",
             "Owl: Thank you, little fox.",
-            "Owl: I'll come to the campsite to find you."
+            "Owl: Iâ€™ll make my way to the camp."
                 };
                 break;
 
             case DialogueType.Beaver_Task:
                 currentDialogueLines = new string[]
                 {
-            "Beaver: Hey! Happy birthday, little one!",
-            "Beaver: I was just about to build a party stage for you.",
-            "Beaver: But a gust of wind blew my hammer onto the driftwood in the middle of the river.",
-            "Beaver: My tail is too clumsy to jump across those wobbly logs.",
-            "Beaver: You're quick and nimble¡ªcan you get my hammer back for me?"
+            "Beaver: Hey! Happy birthday, kid!",
+            "Beaver: I was building you a party stageâ€¦",
+            "Beaver: But the wind knocked my hammer onto those floating logs in the river",
+            "Beaver: My tailâ€™s too clumsy to balance on those wobbly logs.",
+            "Beaver: Youâ€™re quick on your feetâ€”could you grab my hammer for me?"
                 };
                 break;
             case DialogueType.Beaver_Doing:
@@ -166,35 +166,35 @@ public class SimpleDialogueSystem : MonoBehaviour
             case DialogueType.Beaver_Complete:
                 currentDialogueLines = new string[]
                 {
-            "Beaver: Hahaha! There's my old buddy!",
-            "Beaver: The stage will be finished in no time.",
-            "Beaver: Tonight, you must stand on it to celebrate your birthday!"
+            "Beaver: Haha! Thatâ€™s my trusty hammer!",
+            "Beaver: Now I can finish the stage.",
+            "Beaver: Youâ€™ve gotta stand on it tonight for your birthday!"
                 };
                 break;
 
             case DialogueType.Raccoon_Task:
                 currentDialogueLines = new string[]
                 {
-            "Raccoon: Hehe, little birthday star!",
-            "Raccoon: I heard there's a party tonight.",
-            "Raccoon: Perfect timing¡ªI have the most dazzling fireworks in the forest right here.",
-            "Raccoon: But a merchant never trades for nothing.",
-            "Raccoon: If you exchange 3 shiny stones for it, this firework is yours."
+            "Raccoon: birthday star!",
+            "Raccoon: I hear thereâ€™s a party tonight.",
+            "Raccoon: Good thing Iâ€™ve got the finest fireworks in the forest.",
+            "Raccoon: But a trader never deals for free.",
+            "Raccoon: Bring me 5 shiny stonesâ€¦this firework is yours."
                 };
                 break;
             case DialogueType.Raccoon_Doing:
                 currentDialogueLines = new string[]
                 {
-            "Raccoon: Shiny things are the only fit for a party.",
-            "Raccoon: Do you have enough in your bag?"
+            "Raccoon: Only the sparkliest things deserve a party.",
+            "Raccoon: Got enough in your bag?"
                 };
                 break;
             case DialogueType.Raccoon_Complete:
                 currentDialogueLines = new string[]
                 {
             "Raccoon: Deal!",
-            "Raccoon: This firework will burst into the shape of a fox in the night sky.",
-            "Raccoon: Remember to light it when the bonfire is at its brightest."
+            "Raccoon: This one explodes into a fox shape in the sky.",
+            "Raccoon: Light it when the campfireâ€™s at its brightest."
                 };
                 break;
 
@@ -202,7 +202,7 @@ public class SimpleDialogueSystem : MonoBehaviour
                 currentDialogueLines = new string[]
                 {
             "Little Fox Ember: Everyone's here...",
-            "Little Fox Ember: Turns out, the best birthday gift is lighting up this night together with friends."
+            "Little Fox Ember: I guess the best birthday giftâ€¦is spending this night with friends."
                 };
                 break;
         }
@@ -235,12 +235,12 @@ public class SimpleDialogueSystem : MonoBehaviour
                     GameManager.Instance.ShowHint("Go to the forest to look for friends");
                     break;
                 case DialogueType.Bear_Task:
-                    GameManager.Instance.ShowHint("Received a new task.");
+                    GameManager.Instance.ShowHint("New Task Received");
                     GameManager.Instance.jiangGuoObjs.SetActive(true);
                     GameManager.Instance.taskXiongObj.SetActive(true);
                     break;
                 case DialogueType.Bear_Complete:
-                    GameManager.Instance.ShowHint("fulfil a task");
+                    GameManager.Instance.ShowHint("Complete the task");
                     GameManager.Instance.bagControl.ClearJiangguo();
                     GameManager.Instance.taskXiongObj.GetComponent<Toggle>().isOn = true;
                     GameManager.Instance.allTasksDialogCompleted = true;
@@ -250,13 +250,13 @@ public class SimpleDialogueSystem : MonoBehaviour
                     }
                     break;
                 case DialogueType.Rabbit_Task:
-                    GameManager.Instance.ShowHint("Received a new task.");
+                    GameManager.Instance.ShowHint("New Task Received");
                     GameManager.Instance.qiQiuObjs.SetActive(true);
                     GameManager.Instance.zhunXingObj.SetActive(true);
                     GameManager.Instance.taskTuziObj.SetActive(true);
                     break;
                 case DialogueType.Rabbit_Complete:
-                    GameManager.Instance.ShowHint("fulfil a task");
+                    GameManager.Instance.ShowHint("Complete the task");
                     GameManager.Instance.taskTuziObj.GetComponent<Toggle>().isOn = true;
                     GameManager.Instance.allTasksDialogCompleted = true;
                     if (!GameManager.Instance.CheckAllTaskFinish())
@@ -265,12 +265,12 @@ public class SimpleDialogueSystem : MonoBehaviour
                     }
                     break;
                 case DialogueType.Owl_Task:
-                    GameManager.Instance.ShowHint("Received a new task.");
+                    GameManager.Instance.ShowHint("New Task Received.");
                     GameManager.Instance.taskMaotouyingObj.SetActive(true);
                     GameManager.Instance.yinghuochongObj1.SetActive(true);
                     break;
                 case DialogueType.Owl_Complete:
-                    GameManager.Instance.ShowHint("fulfil a task");
+                    GameManager.Instance.ShowHint("Complete the task");
                     GameManager.Instance.taskMaotouyingObj.GetComponent<Toggle>().isOn = true;
                     GameManager.Instance.allTasksDialogCompleted = true;
                     if (!GameManager.Instance.CheckAllTaskFinish())
@@ -279,12 +279,12 @@ public class SimpleDialogueSystem : MonoBehaviour
                     }
                     break;
                 case DialogueType.Beaver_Task:
-                    GameManager.Instance.ShowHint("Received a new task.");
+                    GameManager.Instance.ShowHint("New Task Received.");
                     GameManager.Instance.taskHailiObj.SetActive(true);
                     GameManager.Instance.chuizi.SetActive(true);
                     break;
                 case DialogueType.Beaver_Complete:
-                    GameManager.Instance.ShowHint("fulfil a task");
+                    GameManager.Instance.ShowHint("Complete the task");
                     GameManager.Instance.taskHailiObj.GetComponent<Toggle>().isOn = true;
                     GameManager.Instance.allTasksDialogCompleted = true;
                     if (!GameManager.Instance.CheckAllTaskFinish())
@@ -293,12 +293,12 @@ public class SimpleDialogueSystem : MonoBehaviour
                     }
                     break;
                 case DialogueType.Raccoon_Task:
-                    GameManager.Instance.ShowHint("Received a new task.");
+                    GameManager.Instance.ShowHint("New Task Received.");
                     GameManager.Instance.baoshis.SetActive(true);
                     GameManager.Instance.taskHuanXiongObj.SetActive(true);
                     break;
                 case DialogueType.Raccoon_Complete:
-                    GameManager.Instance.ShowHint("fulfil a task");
+                    GameManager.Instance.ShowHint("Complete the task");
                     GameManager.Instance.taskHuanXiongObj.GetComponent<Toggle>().isOn = true;
                     GameManager.Instance.allTasksDialogCompleted = true;
                     if (!GameManager.Instance.CheckAllTaskFinish())

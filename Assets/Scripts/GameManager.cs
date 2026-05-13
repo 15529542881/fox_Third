@@ -332,7 +332,7 @@ public class GameManager : MonoBehaviour
         jiangGuoObj.SetActive(false);
         jiangGuoNum++;
         bagControl.AddJiangguo();
-        taskXiongText.text = "Sweet for the Bear ¨C Collect Berries (" + jiangGuoNum + "/5)";
+        taskXiongText.text = "Bear â€“ Collect Berries (" + jiangGuoNum + "/5)";
 
         if (jiangGuoNum >= 5)
         {
@@ -347,7 +347,7 @@ public class GameManager : MonoBehaviour
     public void KillBalloon()
     {
         killNum++;
-        taskTuziText.text = "Scary Balloons ¨C Pop the Balloons (" + killNum + "/3)";
+        taskTuziText.text = "Rabbit â€“ Pop the Balloons (" + killNum + "/3)";
         if (killNum >= 3)
         {
             planState[1] = 3;
@@ -425,7 +425,7 @@ public class GameManager : MonoBehaviour
         stoneObj.SetActive(false);
         stoneCount++;
         bagControl.AddStone();        
-        taskHuanXiongText.text = "A Fair Trade ¨C Collect Stones (" + stoneCount + "/5)";
+        taskHuanXiongText.text = "Raccoon â€“ Trade for Fireworks (" + stoneCount + "/5)";
 
         allStones.Remove(stoneObj);
         ShowHint("Collected Shiny Stone!");
@@ -443,7 +443,7 @@ public class GameManager : MonoBehaviour
         planState[4] = 3; 
 
         bagControl.AddYanHua(); 
-        taskHuanXiongText.text = "A Fair Trade ¨C Completed!";
+        taskHuanXiongText.text = "Raccoon â€“ Trade for Fireworks(5/5)";
         ShowHint("Traded stones for Fireworks! Thank you!");
     }
 
