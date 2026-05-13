@@ -42,6 +42,7 @@ public class SimpleDialogueSystem : MonoBehaviour
 
     public void ShowDialogue(DialogueType type)
     {
+        Debug.Log(type);
         GameManager.Instance.SetCursorVisibility(true);
         currentLineIndex = 0;
         LoadDialogueContent(type);
@@ -242,6 +243,11 @@ public class SimpleDialogueSystem : MonoBehaviour
                     GameManager.Instance.ShowHint("fulfil a task");
                     GameManager.Instance.bagControl.ClearJiangguo();
                     GameManager.Instance.taskXiongObj.GetComponent<Toggle>().isOn = true;
+                    GameManager.Instance.allTasksDialogCompleted = true;
+                    if (!GameManager.Instance.CheckAllTaskFinish())
+                    {
+                        GameManager.Instance.allTasksDialogCompleted = false;
+                    }
                     break;
                 case DialogueType.Rabbit_Task:
                     GameManager.Instance.ShowHint("Received a new task.");
@@ -252,6 +258,11 @@ public class SimpleDialogueSystem : MonoBehaviour
                 case DialogueType.Rabbit_Complete:
                     GameManager.Instance.ShowHint("fulfil a task");
                     GameManager.Instance.taskTuziObj.GetComponent<Toggle>().isOn = true;
+                    GameManager.Instance.allTasksDialogCompleted = true;
+                    if (!GameManager.Instance.CheckAllTaskFinish())
+                    {
+                        GameManager.Instance.allTasksDialogCompleted = false;
+                    }
                     break;
                 case DialogueType.Owl_Task:
                     GameManager.Instance.ShowHint("Received a new task.");
@@ -261,6 +272,11 @@ public class SimpleDialogueSystem : MonoBehaviour
                 case DialogueType.Owl_Complete:
                     GameManager.Instance.ShowHint("fulfil a task");
                     GameManager.Instance.taskMaotouyingObj.GetComponent<Toggle>().isOn = true;
+                    GameManager.Instance.allTasksDialogCompleted = true;
+                    if (!GameManager.Instance.CheckAllTaskFinish())
+                    {
+                        GameManager.Instance.allTasksDialogCompleted = false;
+                    }
                     break;
                 case DialogueType.Beaver_Task:
                     GameManager.Instance.ShowHint("Received a new task.");
@@ -270,6 +286,11 @@ public class SimpleDialogueSystem : MonoBehaviour
                 case DialogueType.Beaver_Complete:
                     GameManager.Instance.ShowHint("fulfil a task");
                     GameManager.Instance.taskHailiObj.GetComponent<Toggle>().isOn = true;
+                    GameManager.Instance.allTasksDialogCompleted = true;
+                    if (!GameManager.Instance.CheckAllTaskFinish())
+                    {
+                        GameManager.Instance.allTasksDialogCompleted = false;
+                    }
                     break;
                 case DialogueType.Raccoon_Task:
                     GameManager.Instance.ShowHint("Received a new task.");
@@ -279,8 +300,14 @@ public class SimpleDialogueSystem : MonoBehaviour
                 case DialogueType.Raccoon_Complete:
                     GameManager.Instance.ShowHint("fulfil a task");
                     GameManager.Instance.taskHuanXiongObj.GetComponent<Toggle>().isOn = true;
+                    GameManager.Instance.allTasksDialogCompleted = true;
+                    if (!GameManager.Instance.CheckAllTaskFinish())
+                    {
+                        GameManager.Instance.allTasksDialogCompleted = false;
+                    }
                     break;
                 case DialogueType.Campfire_End:
+                    GameManager.Instance.endBtn.SetActive(true);
                     break;
                 default:
                     break;

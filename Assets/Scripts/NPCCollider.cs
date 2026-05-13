@@ -28,7 +28,10 @@ public class NPCCollider : MonoBehaviour
                     {
                         case 1: GameManager.Instance.talkSystem.ShowDialogue(DialogueType.Bear_Task); GameManager.Instance.planState[0] = 2; break;
                         case 2: GameManager.Instance.talkSystem.ShowDialogue(DialogueType.Bear_Doing);/* GameManager.Instance.planState[0] = 3;*/ break;
-                        case 3: GameManager.Instance.talkSystem.ShowDialogue(DialogueType.Bear_Complete); GetComponent<Collider>().enabled = false; break;
+                        case 3: GameManager.Instance.talkSystem.ShowDialogue(DialogueType.Bear_Complete);
+                               
+                                GetComponent<Collider>().enabled = false; break;
+                            
                     }
                 }
                 else if (name == "Rabbit")
@@ -40,7 +43,9 @@ public class NPCCollider : MonoBehaviour
                     {
                         case 1: GameManager.Instance.talkSystem.ShowDialogue(DialogueType.Rabbit_Task); GameManager.Instance.planState[1] = 2; break;
                         case 2: GameManager.Instance.talkSystem.ShowDialogue(DialogueType.Rabbit_Doing);/* GameManager.Instance.planState[0] = 3;*/ break;
-                        case 3: GameManager.Instance.talkSystem.ShowDialogue(DialogueType.Rabbit_Complete); GetComponent<Collider>().enabled = false; break;
+                        case 3: GameManager.Instance.talkSystem.ShowDialogue(DialogueType.Rabbit_Complete);
+                           
+                            GetComponent<Collider>().enabled = false; break;
                     }
                 }
                 else if (name == "maotouying")
@@ -52,7 +57,9 @@ public class NPCCollider : MonoBehaviour
                     {
                         case 1: GameManager.Instance.talkSystem.ShowDialogue(DialogueType.Owl_Task); GameManager.Instance.planState[2] = 2; break;
                         case 2: GameManager.Instance.talkSystem.ShowDialogue(DialogueType.Owl_Doing);/* GameManager.Instance.planState[0] = 3;*/ break;
-                        case 3: GameManager.Instance.talkSystem.ShowDialogue(DialogueType.Owl_Complete); GetComponent<Collider>().enabled = false; break;
+                        case 3: GameManager.Instance.talkSystem.ShowDialogue(DialogueType.Owl_Complete);
+                            
+                            GetComponent<Collider>().enabled = false; break;
                     }
                 }
                 else if (name == "haili")
@@ -64,7 +71,9 @@ public class NPCCollider : MonoBehaviour
                     {
                         case 1: GameManager.Instance.talkSystem.ShowDialogue(DialogueType.Beaver_Task); GameManager.Instance.planState[3] = 2; break;
                         case 2: GameManager.Instance.talkSystem.ShowDialogue(DialogueType.Beaver_Doing);/* GameManager.Instance.planState[0] = 3;*/ break;
-                        case 3: GameManager.Instance.talkSystem.ShowDialogue(DialogueType.Beaver_Complete); GetComponent<Collider>().enabled = false; break;
+                        case 3: GameManager.Instance.talkSystem.ShowDialogue(DialogueType.Beaver_Complete);
+                           
+                            GetComponent<Collider>().enabled = false; break;
                     }
                 }
                 else if (name == "huanxiong")
@@ -76,7 +85,9 @@ public class NPCCollider : MonoBehaviour
                     {
                         case 1: GameManager.Instance.talkSystem.ShowDialogue(DialogueType.Raccoon_Task); GameManager.Instance.planState[4] = 2; break;
                         case 2: GameManager.Instance.talkSystem.ShowDialogue(DialogueType.Raccoon_Doing);/* GameManager.Instance.planState[0] = 3;*/ break;
-                        case 3: GameManager.Instance.talkSystem.ShowDialogue(DialogueType.Raccoon_Complete); GetComponent<Collider>().enabled = false; break;
+                        case 3: GameManager.Instance.talkSystem.ShowDialogue(DialogueType.Raccoon_Complete);
+                            
+                            GetComponent<Collider>().enabled = false; break;
                     }
                 }
             }

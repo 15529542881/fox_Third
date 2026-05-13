@@ -27,7 +27,6 @@ public class GameManager : MonoBehaviour
 
     public List<int> planState = new List<int>() { 1, 1, 1, 1, 1 };
 
-    //renwu
     public int jiangGuoNum = 0;
     public int killNum = 0;// 
     public Text taskXiongText;
@@ -76,10 +75,10 @@ public class GameManager : MonoBehaviour
     private GameObject currentInteractableStone = null;
     public int stoneCount = 0;         
     public int stoneNeed = 5;          
-    public Transform raccoonTransform; 
+    public Transform raccoonTransform;
 
 
-
+    public bool allTasksDialogCompleted = false;
 
     private GameObject currentInteractableYingHuoChong = null;
 
@@ -95,22 +94,40 @@ public class GameManager : MonoBehaviour
     public GameObject chuizi;
 
     public Transform gameEndPlayerPos; 
-    public GameObject campFireEndObj;  
-    private bool isGameEnd = false;    
+    public GameObject campFireEndObj;
+    public GameObject endBtn;  
+    private bool isGameEnd = false;
 
-    bool CheckAllTaskFinish()
+    private Coroutine currentHintCoroutine;
+    public bool CheckAllTaskFinish()
     {
-        return planState[0] == 3
+        bool allIs3 = planState[0] == 3
             && planState[1] == 3
             && planState[2] == 3
             && planState[3] == 3
             && planState[4] == 3;
+
+        if (allIs3 && !allTasksDialogCompleted)
+        {
+            return false;
+        }
+
+        return allIs3 && allTasksDialogCompleted;
     }
+    //bool CheckAllTaskFinish()
+    //{
+    //    return planState[0] == 3
+    //        && planState[1] == 3
+    //        && planState[2] == 3
+    //        && planState[3] == 3
+    //        && planState[4] == 3;
+    //}
     // Start is called before the first frame update
     void Start()
     {
         SetCursorVisibility(isCursorVisible);
         talkSystem.ShowDialogue(DialogueType.Ember_First);
+        endBtn.SetActive(false);
         baoshis.SetActive(false);
         miniMap.SetActive(false);
         chuizi.SetActive(false);
@@ -186,7 +203,7 @@ public class GameManager : MonoBehaviour
         {
             CheckJiangGuoDistance();
         }
-        if (planState[2] != 3)
+        if (planState[2] != 3 && planState[2] != 1)
         {
             CheckYingHuoChongDistance();
         }
@@ -230,7 +247,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (planState[4] != 3)
+        if (planState[4] != 3 && planState[4] != 1)
         {
             CheckStoneDistance();
         }
@@ -274,10 +291,10 @@ public class GameManager : MonoBehaviour
             ShowHint("Press F to interact with fireflies");
         }
 
-        if (currentInteractableYingHuoChong == null && hintObj.activeInHierarchy)
-        {
-            hintObj.SetActive(false);
-        }
+        //if (currentInteractableYingHuoChong == null && hintObj.activeInHierarchy)
+        //{
+        //    hintObj.SetActive(false);
+        //}
     }
 
     void InteractJiangGuo()
@@ -304,10 +321,10 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (currentInteractableJiangGuo == null && hintObj.activeInHierarchy)
-        {
-            hintObj.SetActive(false);
-        }
+        //if (currentInteractableJiangGuo == null && hintObj.activeInHierarchy)
+        //{
+        //    hintObj.SetActive(false);
+        //}
     }
 
     void PickUpJiangGuo(GameObject jiangGuoObj)
@@ -397,10 +414,10 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (currentInteractableStone == null && hintObj.activeInHierarchy)
-        {
-            hintObj.SetActive(false);
-        }
+        //if (currentInteractableStone == null && hintObj.activeInHierarchy)
+        //{
+        //    hintObj.SetActive(false);
+        //}
     }
 
     void PickUpStone(GameObject stoneObj)
@@ -431,17 +448,24 @@ public class GameManager : MonoBehaviour
     }
 
 
-
     public void ShowHint(string hint)
     {
-        StartCoroutine(ShowHintIE(hint));
+        if (currentHintCoroutine != null)
+        {
+            StopCoroutine(currentHintCoroutine);
+        }
+        currentHintCoroutine = StartCoroutine(ShowHintIE(hint));
     }
-
+    //public void ShowHint(string hint)
+    //{
+    //    StartCoroutine(ShowHintIE(hint));
+    //}
     IEnumerator ShowHintIE(string hint)
     {
         hintObj.SetActive(true);
         hintText.text = hint;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         hintObj.SetActive(false);
+        currentHintCoroutine = null;
     }
 }
